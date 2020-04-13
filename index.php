@@ -5,14 +5,24 @@ $uri = explode('/', $request);
 
 require_once "Database.php";
 require_once "Controllers/Users.php";
-//$db = new Database();
-
+$db = new Database();
+$ctrls=[
+    'Users'=>new Controllers\Users($db),
+];
 
 switch ($uri[0]){
   case '';
-    $title="";
-    echo '<a href="/login">Login</a><br><a href="/signup">Signup</a>';
-  break;
+    require 'Views/landing_page.php';
+    break;
+  case 'login';
+    if(isset($_POST['uname'])){//sent form
+        $ctrls['Users']->evaluate($_POST);
+    }else{//not sent form
+        $ctrls['Users']->send_form();
+    }
+    break;
+  case 'signup';
+    break;
   default:
     echo 'Bad Route';
 }
