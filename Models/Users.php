@@ -1,5 +1,5 @@
-<?php namespace Model; use PDO;
-class Accounts{
+<?php namespace Models; use PDO;
+class User{
     protected $db;
 
     public function __construct($database)

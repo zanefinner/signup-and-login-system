@@ -5,10 +5,15 @@ $uri = explode('/', $request);
 
 require_once "Database.php";
 require_once "Controllers/Users.php";
+require_once "Models/Users.php";
 $db = new Database();
-$ctrls=[
-    'Users'=>new Controllers\Users($db),
+$mdls=[
+    'Users'=> new Models\Users($db)
 ];
+$ctrls=[
+    'Users'=>new Controllers\Users($mdls['Users']),
+];
+
 
 switch ($uri[0]){
   case '';
