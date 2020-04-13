@@ -12,4 +12,7 @@
         public function evaluate($inputs){
             print_r($inputs);
         }
+        public function create_new($inputs){
+            $this->model->insert($inputs['uname'], $inputs['pword']);
+        }
     }

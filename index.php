@@ -16,7 +16,11 @@ switch ($uri[0]){
     break;
   case 'login';
     if(isset($_POST['uname'])){//sent form
-        $ctrls['Users']->evaluate($_POST);
+        if($ctrls['Users']->evaluate($_POST)){
+            $ctrls['Users']->create_new($_POST);
+        }else{
+            echo 'login invalid';
+        }
     }else{//not sent form
         $ctrls['Users']->send_form();
     }
